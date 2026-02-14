@@ -6,16 +6,16 @@
 ### Run:
 `npm start`
 
-### Use:
-`curl -X POST -F file=@sometext.txt "127.0.0.1:2131"`
+### Use web interface:
+Use / page to list or upload files
+
+### Use CURL:
+`curl -X POST -F file=@"filepath.txt" "127.0.0.1:2131/post"`
 
 When you run it locally
 
+### Obtain the specifig file:
+Use /uploads/$FILENAME to get specific file
+
 ### Collision resolution:
 It can override file if there is one more pushed with the same name
-
-### Obtaining list of files:
-Use /uploads path to get list of your files
-
-### Obtaining the specifig file:
-Use /uploads/$FILENAME to get specific file
