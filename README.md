@@ -1,21 +1,28 @@
-# Simple Bucket backend to store sent files.
+# Simple Bucket - Хранилище файлов
 
-### Install:
-`npm i`
+![Simple Bucket](https://via.placeholder.com/600x200.png?text=Simple+Bucket)
 
-### Run:
-`npm start`
+## Описание
+Simple Bucket - это простой веб-сервер для загрузки и хранения файлов. Он предоставляет удобный интерфейс для управления файлами и позволяет легко интегрироваться в другие приложения через API.
 
-### Use web interface:
-Use / page to list or upload files
+## Функциональность
+- Загрузка файлов через веб-интерфейс или API
+- Хранение файлов в директории `uploads`
+- Список всех загруженных файлов с возможностью загрузки
+- Обработка коллизий (файлы с одинаковым именем перезаписываются)
 
-### Use CURL:
-`curl -X POST -F file=@"filepath.txt" "127.0.0.1:2131/post"`
+## Установка
 
-When you run it locally
+1. Убедитесь, что у вас установлен [Node.js](https://nodejs.org/) (рекомендуется версия 14 или выше)
+2. Склонируйте репозиторий:
+   ```bash
+   git clone https://github.com/ваше-имя-репозитория/simple-bucket.git
+   cd simple-bucket
+   ```
+3. Установите зависимости:
+   ```bash
+   npm install
+   ```
 
-### Obtain the specifig file:
-Use /uploads/$FILENAME to get specific file
+## Запуск
 
-### Collision resolution:
-It can override file if there is one more pushed with the same name
