@@ -60,6 +60,7 @@ Keep responsibilities separated:
 
 - Always escape filenames before rendering them into HTML.
 - Always encode filenames before placing them in download URLs.
+- Keep filename validation inside `services/storage.js`; routes should not build filesystem paths directly.
 - Do not expose new upload routes without thinking about authentication, size limits, file type validation, and path traversal.
 - Do not move storage logic back into route handlers or `server.js`.
 - Keep template files read once at startup unless there is a clear development-mode requirement.

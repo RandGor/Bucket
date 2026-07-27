@@ -38,7 +38,15 @@ function createFilesRouter(options) {
 
     router.get('/uploads/:filename', function (req, res) {
         const fileName = req.params.filename;
-        const filePath = options.storage.getFilePath(fileName);
+        let filePath;
+
+        try {
+            filePath = options.storage.getFilePath(fileName);
+        } catch (err) {
+            console.error('Invalid download file name:', err);
+            res.status(404).send('File not found');
+            return;
+        }
 
         console.log('Wanna get file:', filePath);
 
