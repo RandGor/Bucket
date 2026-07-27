@@ -3,7 +3,24 @@ const express = require('express');
 function createFilesRouter(options) {
     const router = express.Router();
 
-    router.post('/post', options.upload.single(options.uploadFieldName), function (req, res) {
+    router.post('/post', function (req, res) {
+        options.upload.single(options.uploadFieldName)(req, res, function (uploadErr) {
+            if (uploadErr) {
+                if (uploadErr.code === 'LIMIT_FILE_SIZE') {
+                    res.status(413).send('File is too large');
+                    return;
+                }
+
+                console.error('Error processing upload:', uploadErr);
+                res.status(400).send('Invalid upload request');
+                return;
+            }
+
+            handleUpload(req, res, options);
+        });
+    });
+
+    function handleUpload(req, res, options) {
         if (!req.file) {
             console.log('No file uploaded.');
             res.send({});
@@ -19,10 +36,10 @@ function createFilesRouter(options) {
                 return;
             }
 
-            console.log('File ' + fileName + ' saved successfully');
-            res.send({ message: 'File uploaded successfully' });
-        });
+        console.log('File ' + fileName + ' saved successfully');
+        res.send({ message: 'File uploaded successfully' });
     });
+    }
 
     router.get('/', function (req, res) {
         options.storage.listFiles(function (err, files) {
