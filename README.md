@@ -32,6 +32,10 @@ npm start
 
 The server listens on port `2131`.
 
+On startup, the console prints the localhost URL and a `Network` URL for each
+non-loopback IPv4 address, including the port. Use the address of your LAN
+interface to access the server from another device on the same network.
+
 Open the web UI:
 
 ```text

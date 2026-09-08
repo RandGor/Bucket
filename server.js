@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const os = require('os');
 const path = require('path');
 const createFilesRouter = require('./routes/files');
 const createStorage = require('./services/storage');
@@ -34,4 +35,18 @@ app.use(createFilesRouter({
 
 app.listen(PORT, function () {
     console.log('Server listening on port ' + PORT);
+    console.log(`Local: http://localhost:${PORT}`);
+
+    const addresses = new Set();
+    for (const interfaces of Object.values(os.networkInterfaces())) {
+        for (const network of interfaces || []) {
+            if (network.family === 'IPv4' && !network.internal) {
+                addresses.add(network.address);
+            }
+        }
+    }
+
+    for (const address of addresses) {
+        console.log(`Network: http://${address}:${PORT}`);
+    }
 });
