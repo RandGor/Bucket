@@ -7,7 +7,7 @@ const createFilesPageRenderer = require('./views/filesPage');
 
 const PORT = 2131;
 const UPLOAD_FIELD_NAME = 'file';
-const MAX_FILE_SIZE_BYTES = 25 * 1024 * 1024;
+const MAX_FILE_SIZE_BYTES = 100 * 1024 * 1024;
 const UPLOADS_DIR_NAME = 'uploads';
 const UPLOADS_DIR = path.join(__dirname, UPLOADS_DIR_NAME);
 const INDEX_TEMPLATE_PATH = path.join(__dirname, 'views', 'index.html');

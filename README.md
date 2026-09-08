@@ -100,7 +100,7 @@ Responses:
 
 - `200` with `{ "message": "File uploaded successfully" }` when the file is saved
 - `200` with `{}` when the request does not contain a file
-- `413` with `File is too large` when the uploaded file exceeds 25 MB
+- `413` with `File is too large` when the uploaded file exceeds 100 MB
 - `500` with `Error uploading file` when saving fails
 
 ### `GET /uploads/:filename`
@@ -160,7 +160,7 @@ When a new upload has the same filename as an existing file, the existing file i
 ## Development Notes
 
 - The app uses `multer` with in-memory upload handling, then writes the uploaded buffer to disk.
-- Uploads are limited to 25 MB per file.
+- Uploads are limited to 100 MB per file.
 - The current port is hardcoded in `server.js` as `2131`.
 - The server does not currently implement authentication, quotas, or file type validation.
 - For public or shared deployments, add access control and upload restrictions before exposing the service.
